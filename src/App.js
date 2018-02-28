@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { Table, } from 'react-bootstrap';
 import axios from 'axios';
+import { api } from './utils/api'
 
 class App extends Component {
   state = { weather: [], city: {}, forecast: [] }
 
   componentDidMount() {
-    axios.get('http://api.openweathermap.org/data/2.5//forecast?zip=84113')
+    axios.get(`http://api.openweathermap.org/data/2.5//forecast?zip=84113&APPID=${api}`)
       .then( res => this.setState({ weather: res.data, city: res.data.city, forecast: res.data.list }))
       .catch( err => { console.log(err)});
   }
